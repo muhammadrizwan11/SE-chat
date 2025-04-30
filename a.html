@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Engineering Resources</title>
+    <script async type='module' src='https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'></script>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-bg: #f5f5f5;
+            --dark-text: #333;
+            --light-text: #fff;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark-text);
+            background-color: var(--light-bg);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            padding: 1rem 2rem;
+            text-align: center;
+        }
+        
+        nav {
+            background-color: var(--primary-color);
+            display: flex;
+            justify-content: center;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav li {
+            padding: 1rem;
+        }
+        
+        nav a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .hero {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 3rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            margin-top: 0;
+            font-size: 2.5rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 1rem auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--light-text);
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        .resources {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+        }
+        
+        .resources h2 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        .resources ul {
+            padding-left: 1.5rem;
+        }
+        
+        .resources li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .resources a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .resources a:hover {
+            text-decoration: underline;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        #chatbot-toggle {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        
+        #chatbot-toggle:hover {
+            background-color: #2980b9;
+            transform: scale(1.1);
+        }
+        
+        .chatbot-popup {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 350px;
+            height: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: none;
+            z-index: 1000;
+        }
+        
+        .chatbot-popup.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Software Engineering Hub</h1>
+        <p>Your one-stop resource for software engineering best practices</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#practices">Best Practices</a></li>
+            <li><a href="#tools">Development Tools</a></li>
+            <li><a href="#languages">Languages</a></li>
+            <li><a href="#resources">Resources</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section id="home" class="hero">
+            <h2>Master Software Engineering</h2>
+            <p>Discover the best practices, tools, and resources to enhance your software engineering skills and build robust, scalable applications.</p>
+            <a href="#resources" class="btn">Explore Resources</a>
+        </section>
+        
+        <section id="practices" class="features">
+            <div class="feature-card">
+                <h3>Clean Code</h3>
+                <p>Learn principles of writing clean, maintainable, and efficient code that follows industry standards and best practices.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Test-Driven Development</h3>
+                <p>Discover how to implement TDD to ensure your code is reliable, bug-free, and meets all requirements.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Agile Methodologies</h3>
+                <p>Understand agile practices like Scrum and Kanban to improve team collaboration and project delivery.</p>
+            </div>
+        </section>
+        
+        <section id="tools" class="resources">
+            <h2>Essential Development Tools</h2>
+            <ul>
+                <li><strong>Version Control</strong>: Git, GitHub, GitLab</li>
+                <li><strong>IDEs & Editors</strong>: Visual Studio Code, IntelliJ IDEA, Eclipse</li>
+                <li><strong>CI/CD</strong>: Jenkins, GitHub Actions, CircleCI</li>
+                <li><strong>Testing</strong>: Jest, Selenium, JUnit</li>
+                <li><strong>Project Management</strong>: Jira, Trello, Asana</li>
+            </ul>
+        </section>
+        
+        <section id="languages" class="features">
+            <div class="feature-card">
+                <h3>Python</h3>
+                <p>Versatile language ideal for web development, data science, and AI applications.</p>
+            </div>
+            <div class="feature-card">
+                <h3>JavaScript</h3>
+                <p>Essential for web development with frameworks like React, Angular, and Vue.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Java</h3>
+                <p>Popular for enterprise applications, Android development, and large-scale systems.</p>
+            </div>
+        </section>
+        
+        <section id="resources" class="resources">
+            <h2>Learning Resources</h2>
+            <ul>
+                <li><a href="#">The Clean Coder - Robert C. Martin</a></li>
+                <li><a href="#">Design Patterns - Erich Gamma</a></li>
+                <li><a href="#">Refactoring - Martin Fowler</a></li>
+                <li><a href="#">The Pragmatic Programmer - Andy Hunt & Dave Thomas</a></li>
+                <li><a href="#">Code Complete - Steve McConnell</a></li>
+            </ul>
+        </section>
+    </main>
+    
+    <footer>
+        <p>© 2025 Software Engineering Hub. All rights reserved.</p>
+        <p>Need help? Our chatbot assistant is available 24/7!</p>
+    </footer>
+    
+    <!-- Chatbot Widget -->
+    <div class="chatbot-container">
+        <button id="chatbot-toggle">💬</button>
+        <div class="chatbot-popup" id="chatbot-popup">
+            <zapier-interfaces-chatbot-embed 
+                is-popup='false' 
+                chatbot-id='cma3kgr6g001x1vyw5f0nr8xv' 
+                height='500px' 
+                width='350px'>
+            </zapier-interfaces-chatbot-embed>
+        </div>
+    </div>
+    
+    <script>
+        // Toggle chatbot visibility
+        document.getElementById('chatbot-toggle').addEventListener('click', function() {
+            document.getElementById('chatbot-popup').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
